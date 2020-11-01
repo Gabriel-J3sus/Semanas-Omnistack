@@ -1,0 +1,152 @@
+#page-home {
+    width: 100vw;
+    max-width: 1180px;
+
+    padding: 0 30px;
+    margin: 32px auto;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #DCDCE6;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-track {
+    background-color: #F0F0F5;
+}
+
+#page-home header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#page-home header .header-left {
+    display: flex;
+    align-items: center;
+}
+
+#page-home header .header-left img {
+    height: 64px;
+
+    margin-right: 24px;
+}
+
+#page-home header .header-left h2 {
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 18px;
+    color: #13131A;
+}
+
+#page-home header .header-right {
+    display: flex;
+    align-items: center;
+}
+
+#page-home header .header-right .new {
+    width: 262px;
+    height: 60px;
+
+    margin-right: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #E02041;
+    border-radius: 8px;
+
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 18px;
+    color: #F0F0F5;
+
+    text-decoration: none;
+
+    transition: 0.3s ease-in-out;
+}
+
+#page-home header .header-right .new:hover {
+    border: 1.5px solid #E02041;
+    color: #E02041;
+    background: transparent;
+}
+
+#page-home header .header-right .logout {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1.5px solid #DCDCE6;
+    border-radius: 8px;
+
+    transition: 0.3s ease-in-out;
+}
+
+#page-home header .header-right .logout:hover {
+    border: 1.5px solid #E02041;
+}
+
+#page-home h1 {
+    /* margin-bottom: 32px; */
+    margin-top: 80px;
+    margin-bottom: 24px;
+
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 36px;
+    color: #13131A;
+}
+
+#page-home ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+    list-style: none;
+}
+
+#page-home ul li {
+    background: #FFF;
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+}
+
+#page-home ul li button {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+
+    background: #FFF;
+    cursor:pointer; 
+    border: 0;
+    outline: 0;
+}
+
+#page-home ul li strong {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: #41414D;
+}
+
+#page-home ul li p {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: #737380;
+
+    margin-top: 16px;
+    margin-bottom: 32px;
+}
+
+#page-home ul li p:last-child {
+    margin-bottom: 0;
+}
