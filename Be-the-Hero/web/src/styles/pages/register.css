@@ -64,6 +64,8 @@
     font-weight: bold;
     line-height: 16px;
     color: #41414D;
+    outline: 0;
+    border: 0;
 
     text-decoration: none;
     transition: 0.3s ease-in-out;

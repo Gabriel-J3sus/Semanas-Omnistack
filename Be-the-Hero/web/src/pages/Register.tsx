@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import '../styles/pages/register.css';
@@ -7,6 +7,8 @@ import '../styles/pages/register.css';
 import logoImg from '../images/Logo.svg';
 
 function Register() {
+    const { goBack } = useHistory();
+
     return (
         <div id="page-register">
             <div className="content-wrapper">
@@ -17,10 +19,10 @@ function Register() {
 
                     <p>Faça seu cadastro, entre na plataforma e ajude pessoas a encontrarem os casos da sua ONG.</p>
 
-                    <Link to="/" className="return">
+                    <button onClick={goBack} className="return">
                         <FiArrowLeft size={24} color="#E02041" />
                         <span>Voltar para o logon</span>
-                    </Link>
+                    </button>
                 </div>
                 
                 <div className="right">

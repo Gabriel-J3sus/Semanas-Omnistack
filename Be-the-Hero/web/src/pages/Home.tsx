@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CgLogOff } from 'react-icons/cg';
 import { FiTrash2 } from 'react-icons/fi';
 
 import '../styles/pages/home.css';
+import api from '../services/api';
 
 import logoImg from '../images/Logo.svg';
 
-function List() {
+
+interface Accident {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+}
+
+function Home() {
+    const [accidents, setAccidents] = useState<Accident[]>([]);
+
+    useEffect(() => {
+        api.get('events').then(response => {
+            setAccidents(response.data);
+        });
+    }, []);
+
     return (
         <div id="page-home">
             <header>
@@ -32,53 +49,27 @@ function List() {
 
             
             <ul>
-                <li>
-                    <button style={{cursor:"pointer", border: 0}}>
-                            <FiTrash2 size={20} color="#a8a8b3" />
-                    </button>
+                {accidents.map(accident => {
+                    return (
+                        <li key={accident.id}>
+                            <button style={{cursor:"pointer", border: 0}}>
+                                    <FiTrash2 size={20} color="#a8a8b3" />
+                            </button>
 
-                    <strong>Caso:</strong>
-                    <p>Cadelinha atropelada</p>
-                        
-                    <strong>Descrição:</strong>
-                    <p>A cadelinha Jolie foi atropelada por um carro no bairro Santana e teve que passar por uma cirurgia às pressas.</p>
-                        
-                    <strong>Valor:</strong>
-                    <p>R$ 120,00 reais</p>
-                </li>
-
-                <li>
-                    <button>
-                            <FiTrash2 size={20} color="#a8a8b3" />
-                    </button>
-
-                    <strong>Caso:</strong>
-                    <p>Cadelinha atropelada</p>
-                        
-                    <strong>Descrição:</strong>
-                    <p>A cadelinha Jolie foi atropelada por um carro no bairro Santana e teve que passar por uma cirurgia às pressas.</p>
-                        
-                    <strong>Valor:</strong>
-                    <p>R$ 120,00 reais</p>
-                </li>
-
-                <li>
-                    <button>
-                            <FiTrash2 size={20} color="#a8a8b3" />
-                    </button>
-
-                    <strong>Caso:</strong>
-                    <p>Cadelinha atropelada</p>
-                        
-                    <strong>Descrição:</strong>
-                    <p>A cadelinha Jolie foi atropelada por um carro no bairro Santana e teve que passar por uma cirurgia às pressas.</p>
-                        
-                    <strong>Valor:</strong>
-                    <p>R$ 120,00 reais</p>
-                </li>
+                            <strong>Caso:</strong>
+                            <p>{accident.name}</p>
+                                
+                            <strong>Descrição:</strong>
+                            <p>{accident.description}</p>
+                                
+                            <strong>Valor:</strong>
+                            <p>R${accident.price}</p>
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );
 }
 
-export default List;
+export default Home;
