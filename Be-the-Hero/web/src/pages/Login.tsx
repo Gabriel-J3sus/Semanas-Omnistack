@@ -1,24 +1,48 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { FormEvent, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
 
 import '../styles/pages/login.css';
+import api from '../services/api';
 
 import logoImg from '../images/Logo.svg';
 import peopleImg from '../images/People.svg';
 
 function Login() {
+    const history = useHistory();
+
+    const [id, setId] = useState('');
+
+    async function handleSubmit(event: FormEvent) {
+        event.preventDefault();
+
+        const data = {
+            id,
+        };
+
+        await api.post('ongs/login', data);
+
+        alert('all good baby baby baby');
+
+        history.push('/home');
+    }
+
     return (
         <div id="page-login">
             <div className="content-wrapper">
                 <div className="left">
                     <img src={logoImg} alt="Be The Hero"/>
 
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <legend> Faça seu Logon </legend>
-                        <input type="text" placeholder="Sua ID" />
+                        <input 
+                            type="text"
+                            placeholder="Sua ID" 
+                            value={id}
+                            onChange={event => setId(event.target.value)}
+                        />
 
-                        <button>
+                        <button type="submit">
                             Entrar
                         </button>
 
