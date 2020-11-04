@@ -26,6 +26,20 @@ export class createEvents1604336244904 implements MigrationInterface {
                 {
                     name: 'price',
                     type: 'decimal',
+                },
+                {
+                    name: 'ong_Id',
+                    type: 'integer',
+                }
+            ],
+            foreignKeys: [
+                {
+                    name: 'ongId',
+                    columnNames: ['ong_Id'],
+                    referencedTableName: 'ongs',
+                    referencedColumnNames: ['id'],
+                    onUpdate: 'CASCADE',
+                    onDelete: 'CASCADE',
                 }
             ]
         }))

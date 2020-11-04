@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { CgLogOff } from 'react-icons/cg';
 import { FiTrash2 } from 'react-icons/fi';
 
@@ -17,7 +17,11 @@ interface Accident {
 }
 
 function Home() {
+    const history = useHistory();
+
     const [accidents, setAccidents] = useState<Accident[]>([]);
+
+    const ongName = localStorage.getItem('ongName');
 
     useEffect(() => {
         api.get('events').then(response => {
@@ -25,13 +29,33 @@ function Home() {
         });
     }, []);
 
+    async function handleDeleteIncident(id: number) {
+        try {
+            await api.delete(`events/${id}`);
+
+            setAccidents(accidents.filter(accident => accident.id !== id));
+            
+        } catch(err) {
+
+            alert('Erro ao deletar caso, tente novamente.');
+        }
+
+    }
+
+    function handleLogout() {
+        localStorage.clear();
+
+
+        history.push('/');
+    }
+
     return (
         <div id="page-home">
             <header>
                 <div className="header-left">
                     <img src={logoImg} alt="Be The Hero"/>
 
-                    <h2>Bem vinda, APAD</h2>
+                    <h2>Bem vindo(a), {ongName}</h2>
                 </div>
 
                 <div className="header-right">
@@ -39,9 +63,9 @@ function Home() {
                         Cadastrar novo caso
                     </Link>
 
-                    <Link to="#" className="logout">
+                    <button type="button" onClick={handleLogout} className="logout">
                         <CgLogOff size={24} color="#E02041" />
-                    </Link>
+                    </button>
                 </div>
             </header>
 
@@ -52,7 +76,7 @@ function Home() {
                 {accidents.map(accident => {
                     return (
                         <li key={accident.id}>
-                            <button style={{cursor:"pointer", border: 0}}>
+                            <button type="button" style={{cursor:"pointer", border: 0}} onClick={() => handleDeleteIncident(accident.id)} >
                                     <FiTrash2 size={20} color="#a8a8b3" />
                             </button>
 

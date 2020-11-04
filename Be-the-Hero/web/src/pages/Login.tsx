@@ -16,15 +16,17 @@ function Login() {
     async function handleSubmit(event: FormEvent) {
         event.preventDefault();
 
-        const data = {
-            id,
-        };
+        try {
+            const response = await api.post('ongs/login', { id });
 
-        await api.post('ongs/login', data);
+            localStorage.setItem('ongId', id);
+            localStorage.setItem('ongName', response.data.name);
 
-        alert('all good baby baby baby');
-
-        history.push('/home');
+            history.push('/home');
+        
+        } catch(err) {
+            alert('Falha no login, tente novamente.');
+        }
     }
 
     return (

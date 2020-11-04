@@ -13,14 +13,14 @@ export default {
         return response.json(events);
     },
 
-    async show(request: Request, response: Response) {
+    async delete(request: Request, response: Response) {
         const { id } = request.params;
 
         const eventsRepository = getRepository(Event);
 
-        const event = await eventsRepository.findOneOrFail(id);
+        await eventsRepository.delete(id);
 
-        return response.json(event);
+        return response.status(204).send();
     },
 
     async create(request: Request, response: Response) {
@@ -39,7 +39,7 @@ export default {
         await schema.validate(data, {
             abortEarly: false,
         });
-
+        
         const event = eventsRepository.create(data);
         
         await eventsRepository.save(event);

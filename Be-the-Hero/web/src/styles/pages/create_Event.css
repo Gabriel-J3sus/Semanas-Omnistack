@@ -131,40 +131,13 @@
 
 #page-create .content-wrapper .right .buttons {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
     margin-top: 16px;
 }
 
-#page-create .content-wrapper .right .buttons .cancel {
-    width: 168px;
-    height: 60px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 2.5px solid #DCDCE6;
-    border-radius: 8px;
-
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 18px;
-    color: #41414D;
-    cursor: pointer;
-
-    transition: 0.3s ease-in-out;
-}
-
-#page-create .content-wrapper .right .buttons .cancel:hover {
-    border: 2.5px solid #E02041;
-    background: transparent;
-    color: #E02041;
-}
-
 #page-create .content-wrapper .right .buttons .register {
-    width: 263px;
+    width: 100%;
     height: 60px;
 
     display: flex;

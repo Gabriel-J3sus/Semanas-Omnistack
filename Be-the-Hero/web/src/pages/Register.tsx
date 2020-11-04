@@ -28,11 +28,17 @@ function Register() {
             uf,
         };
 
-        await api.post('ongs', data);
+        try {
+            const response = await api.post('ongs', data);
+            
+            alert(`Cadastro realizado com sucesso. Sua ID de acesso: ${response.data.id}.`);
+            
+            history.push('/');
 
-        alert('ok');
+        } catch(err) {
+            alert('Error no cadastro, tente novamente.');
 
-        history.push('/');
+        }
     }
     
     return (
