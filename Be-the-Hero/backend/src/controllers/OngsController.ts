@@ -1,14 +1,15 @@
+
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import * as Yup from 'yup';
 
 const crypto = require('crypto');
 
-import Ongs from '../models/Ongs';
+import Ong from '../models/Ong';
 
 export default {
     async index(request: Request, response: Response) {
-        const ongsRepository = getRepository(Ongs);
+        const ongsRepository = getRepository(Ong);
 
         const ongs = await ongsRepository.find();
 
@@ -18,7 +19,7 @@ export default {
     async show(request: Request, response: Response) {
         const { id } = request.body;
 
-        const ongsRepository = getRepository(Ongs);
+        const ongsRepository = getRepository(Ong);
 
         const ong = await ongsRepository.findOneOrFail(id);
 
@@ -28,7 +29,7 @@ export default {
     async create(request: Request, response: Response) {
         const { name, email, whatsapp, city, uf } = request.body;
 
-        const ongsRepository = getRepository(Ongs);
+        const ongsRepository = getRepository(Ong);
         
         const id = crypto.randomBytes(4).toString('HEX');
 
