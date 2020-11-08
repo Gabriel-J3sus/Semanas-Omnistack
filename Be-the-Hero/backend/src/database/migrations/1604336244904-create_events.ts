@@ -28,14 +28,14 @@ export class createEvents1604336244904 implements MigrationInterface {
                     type: 'decimal',
                 },
                 {
-                    name: 'ong_Id',
-                    type: 'integer',
+                    name: 'ong_id',
+                    type: 'varchar',
                 }
             ],
             foreignKeys: [
                 {
                     name: 'ongId',
-                    columnNames: ['ong_Id'],
+                    columnNames: ['ong_id'],
                     referencedTableName: 'ongs',
                     referencedColumnNames: ['id'],
                     onUpdate: 'CASCADE',

@@ -11,6 +11,8 @@ function RegisterEvent() {
     const { goBack } = useHistory();
     const history = useHistory();
     
+    const ong_id = localStorage.getItem('ongId');
+
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -18,17 +20,22 @@ function RegisterEvent() {
     async function handleSubmit(event: FormEvent) {
         event.preventDefault();
 
-        const data = {
-            name,
-            description,
-            price,
-        };
-        
-        await api.post('events', data);
-        
-        alert('ok');
-        
-        history.push('/home');
+        try {
+            const data = {
+                name,
+                description,
+                price,
+                ong_id,
+            };
+            
+            await api.post('events', data);
+            
+            history.push('/home');
+            
+        } catch(err) {
+
+            alert('Erro ao cadastrar');
+        }
     }
 
     return (

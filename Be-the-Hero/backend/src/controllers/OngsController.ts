@@ -1,4 +1,3 @@
-
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import * as Yup from 'yup';
@@ -22,6 +21,10 @@ export default {
         const ongsRepository = getRepository(Ong);
 
         const ong = await ongsRepository.findOneOrFail(id);
+
+        if (!ong) {
+            return response.status(400).json({ error: 'No ONG found with this ID' })
+        }
 
         return response.json(ong);
     },

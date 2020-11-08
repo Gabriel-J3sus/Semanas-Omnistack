@@ -13,4 +13,7 @@ export default class Event {
 
     @Column()
     price: number;
+
+    @Column()
+    ong_id: string;
 }

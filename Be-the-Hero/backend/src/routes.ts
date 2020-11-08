@@ -14,6 +14,7 @@ routes.post('/ongs', OngsController.create);
 
 
 routes.get('/events', EventsController.index);
+routes.get('/events/fff/', EventsController.show);
 routes.delete('/events/:id', EventsController.delete);
 routes.post('/events', EventsController.create);
 
