@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+
+import Ong from './Ong';
 
 @Entity('events')
 export default class Event {
@@ -14,6 +16,9 @@ export default class Event {
     @Column()
     price: number;
 
-    @Column()
-    ong_id: string;
+    @ManyToOne(() => Ong, ong => ong.events, {
+        cascade: true
+    })
+    @JoinColumn({ name: 'ong' })
+    ong: Ong;
 }

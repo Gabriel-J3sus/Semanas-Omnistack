@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany, JoinColumn } from 'typeorm';
+
+import Event from './Event';
 
 @Entity('ongs')
 export default class Ong {
@@ -19,4 +21,8 @@ export default class Ong {
 
     @Column()
     uf: string;
+
+    @OneToMany(() => Event, event => event.ong)
+    @JoinColumn({ name: 'events' })
+    events: Event[];
 }

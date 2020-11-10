@@ -10,8 +10,10 @@ export default {
     async index(request: Request, response: Response) {
         const ongsRepository = getRepository(Ong);
 
-        const ongs = await ongsRepository.find();
-
+        const ongs = await ongsRepository.find({
+            relations: ["events"]
+        });
+        
         return response.json(ongs);
     },
 

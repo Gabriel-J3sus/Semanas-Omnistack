@@ -10,7 +10,7 @@ export class createEvents1604336244904 implements MigrationInterface {
                 {
                     name: 'id',
                     type: 'integer',
-                    unsigned: true,
+                    isUnique: true,
                     isPrimary: true,
                     isGenerated: true,
                     generationStrategy: 'increment',
@@ -28,14 +28,14 @@ export class createEvents1604336244904 implements MigrationInterface {
                     type: 'decimal',
                 },
                 {
-                    name: 'ong_id',
+                    name: 'ong',
                     type: 'varchar',
                 }
             ],
             foreignKeys: [
                 {
-                    name: 'ongId',
-                    columnNames: ['ong_id'],
+                    name: 'ong',
+                    columnNames: ['ong'],
                     referencedTableName: 'ongs',
                     referencedColumnNames: ['id'],
                     onUpdate: 'CASCADE',

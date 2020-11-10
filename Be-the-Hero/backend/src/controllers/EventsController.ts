@@ -9,23 +9,21 @@ export default {
     async index(request: Request, response: Response) {
         const eventsRepository = getRepository(Event);
 
-        const events = await eventsRepository.find();
-
+        const events = await eventsRepository.find({
+            relations: ["ong"]
+        });
+        
         return response.json(events);
     },
 
     async show(request: Request, response: Response) {
-        const { id } = request.body;
+        const { id } = request.params;
 
-        const ongsRepository = getRepository(Ong);
+        const eventsRepository = getRepository(Event);
 
-        const ong = await ongsRepository.findOneOrFail(id);
+        const event = await eventsRepository.findOneOrFail(id);
 
-        if (!ong) {
-            return response.status(400).json({ error: 'No ONG found with this ID' })
-        }
-
-        return response.json(ong);
+        return response.json(event);
     },
 
     async delete(request: Request, response: Response) {
@@ -35,31 +33,31 @@ export default {
 
         await eventsRepository.delete(id);
 
-        return response.status(204).send();
+        return response.status(204).json({ message: 'Deleted' });
     },
 
     async create(request: Request, response: Response) {
-        const { name, description, price, ong_id } = request.body;
+        const { name, description, price, ong } = request.body;
         
         const eventsRepository = getRepository(Event);
         const ongsRepository = getRepository(Ong);
 
-        const ong = await ongsRepository.findOneOrFail(ong_id);
+        const ongs = await ongsRepository.findOneOrFail(ong);
 
-        const data = {name, description, price, ong_id};
+        const data = {name, description, price, ong};
 
         const schema = Yup.object().shape({
             name: Yup.string().required(),
             description: Yup.string().required().max(50),
             price: Yup.number().required(),
-            ong_id: Yup.string().required(),
+            ong: Yup.string().required(),
         });
 
         await schema.validate(data, {
             abortEarly: false,
         });
 
-        if (!ong) {
+        if (!ongs) {
             return response.json({ message: 'This ID does not exists' })
         }
         
