@@ -11,7 +11,7 @@ function RegisterEvent() {
     const { goBack } = useHistory();
     const history = useHistory();
     
-    const ong_id = localStorage.getItem('ongId');
+    const ong = localStorage.getItem('ongId');
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -25,7 +25,7 @@ function RegisterEvent() {
                 name,
                 description,
                 price,
-                ong_id,
+                ong,
             };
             
             await api.post('events', data);
