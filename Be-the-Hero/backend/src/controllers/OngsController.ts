@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 const crypto = require('crypto');
 
 import Ong from '../models/Ong';
+import ongView from '../views/ong_view';
 
 export default {
     async index(request: Request, response: Response) {
@@ -14,7 +15,7 @@ export default {
             relations: ["events"]
         });
         
-        return response.json(ongs);
+        return response.json(ongView.renderMany(ongs));
     },
 
     async show(request: Request, response: Response) {
@@ -22,13 +23,15 @@ export default {
 
         const ongsRepository = getRepository(Ong);
 
-        const ong = await ongsRepository.findOneOrFail(id);
+        const ong = await ongsRepository.findOneOrFail(id, {
+            relations: ["events"]
+        });
 
         if (!ong) {
             return response.status(400).json({ error: 'No ONG found with this ID' })
         }
 
-        return response.json(ong);
+        return response.json(ongView.render(ong));
     },
 
     async create(request: Request, response: Response) {

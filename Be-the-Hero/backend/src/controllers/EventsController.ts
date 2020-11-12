@@ -5,6 +5,8 @@ import * as Yup from 'yup';
 import Event from '../models/Event';
 import Ong from '../models/Ong';
 
+import eventView from '../views/event_view';
+
 export default {
     async index(request: Request, response: Response) {
         const eventsRepository = getRepository(Event);
@@ -13,7 +15,7 @@ export default {
             relations: ["ong"]
         });
         
-        return response.json(events);
+        return response.json(eventView.renderMany(events));
     },
 
     async show(request: Request, response: Response) {
@@ -21,9 +23,11 @@ export default {
 
         const eventsRepository = getRepository(Event);
 
-        const event = await eventsRepository.findOneOrFail(id);
+        const event = await eventsRepository.findOneOrFail(id, {
+            relations: ["ong"]
+        });
 
-        return response.json(event);
+        return response.json(eventView.render(event));
     },
 
     async delete(request: Request, response: Response) {
