@@ -17,7 +17,7 @@ function Login() {
         event.preventDefault();
 
         try {
-            const response = await api.get(`ongs/${id}`);
+            await api.get(`ongs/${id}`);
 
             history.push(`home/${id}`);
         
