@@ -17,12 +17,9 @@ function Login() {
         event.preventDefault();
 
         try {
-            const response = await api.post('ongs/login', { id });
+            const response = await api.get(`ongs/${id}`);
 
-            localStorage.setItem('ongId', id);
-            localStorage.setItem('ongName', response.data.name);
-
-            history.push('/home');
+            history.push(`home/${id}`);
         
         } catch(err) {
             alert('Falha no login, tente novamente.');

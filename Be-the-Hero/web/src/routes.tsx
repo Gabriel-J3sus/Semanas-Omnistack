@@ -14,8 +14,8 @@ function Routes() {
                 <Route path="/" exact component={Login} />
                 <Route path="/register" component={Register} />
 
-                <Route path="/home" component={Home} />
-                <Route path="/create" component={CreateEvent} />
+                <Route path="/home/:id" component={Home} />
+                <Route path="/create/:id" component={CreateEvent} />
             </Switch>
         </BrowserRouter>
     );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { CgLogOff } from 'react-icons/cg';
 import { FiTrash2 } from 'react-icons/fi';
 
@@ -8,32 +8,43 @@ import api from '../services/api';
 
 import logoImg from '../images/Logo.svg';
 
-
-interface Accident {
+interface Ong {
     id: number;
     name: string;
-    description: string;
-    price: number;
+    events: Array<{
+        id: number;
+        name: string;
+        description: string;
+        price: number;
+    }>;
+}
+
+interface OngParams {
+    id: string;
 }
 
 function Home() {
+    const params = useParams<OngParams>();
     const history = useHistory();
 
-    const [accidents, setAccidents] = useState<Accident[]>([]);
-
-    const ongName = localStorage.getItem('ongName');
+    const [ong, setOng] = useState<Ong>()
 
     useEffect(() => {
-        api.get('events').then(response => {
-            setAccidents(response.data);
-        });
-    }, []);
+        api.get(`ongs/${params.id}`).then(response => {
+            setOng(response.data);
+        })
+    }, [params.id]);
+
+    if (!ong) {
+        return <p>Carregando...</p>;
+    }
 
     async function handleDeleteIncident(id: number) {
         try {
             await api.delete(`events/${id}`);
 
-            setAccidents(accidents.filter(accident => accident.id !== id));
+            ong?.events.filter(event => event.id === id);
+            history.go(0);
             
         } catch(err) {
 
@@ -43,9 +54,6 @@ function Home() {
     }
 
     function handleLogout() {
-        localStorage.clear();
-
-
         history.push('/');
     }
 
@@ -55,15 +63,15 @@ function Home() {
                 <div className="header-left">
                     <img src={logoImg} alt="Be The Hero"/>
 
-                    <h2>Bem vindo(a), {ongName}</h2>
+                    <h2>Bem vindo(a), {ong.name}</h2>
                 </div>
 
                 <div className="header-right">
-                    <Link to="/create" className="new">
+                    <Link to={`/create/${ong.id}`} className="new">
                         Cadastrar novo caso
                     </Link>
-
-                    <button type="button" onClick={handleLogout} className="logout">
+                    
+                    <button type="button" onClick={handleLogout}    className="logout">
                         <CgLogOff size={24} color="#E02041" />
                     </button>
                 </div>
@@ -73,21 +81,21 @@ function Home() {
 
             
             <ul>
-                {accidents.map(accident => {
+                {ong.events.map(event => {
                     return (
-                        <li key={accident.id}>
-                            <button type="button" style={{cursor:"pointer", border: 0}} onClick={() => handleDeleteIncident(accident.id)} >
+                        <li key={event.id}>
+                            <button type="button" style={{cursor:"pointer", border: 0}} onClick={() => handleDeleteIncident(event.id)}>
                                     <FiTrash2 size={20} color="#a8a8b3" />
                             </button>
 
                             <strong>Caso:</strong>
-                            <p>{accident.name}</p>
+                            <p>{event.name}</p>
                                 
                             <strong>Descrição:</strong>
-                            <p>{accident.description}</p>
+                            <p>{event.description}</p>
                                 
                             <strong>Valor:</strong>
-                            <p>R${accident.price}</p>
+                            <p>R${event.price}</p>
                         </li>
                     );
                 })}

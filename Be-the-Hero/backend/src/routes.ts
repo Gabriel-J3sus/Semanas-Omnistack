@@ -9,7 +9,7 @@ const routes = Router();
 
 
 routes.get('/ongs', OngsController.index);
-routes.post('/ongs/login', OngsController.show);
+routes.get('/ongs/:id', OngsController.show);
 routes.post('/ongs', OngsController.create);
 
 

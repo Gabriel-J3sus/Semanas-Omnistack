@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import '../styles/pages/create_Event.css';
@@ -7,15 +7,19 @@ import api from '../services/api';
 
 import logoImg from '../images/Logo.svg';
 
+interface OngParams {
+    id: string;
+}
+
 function RegisterEvent() {
+    const params = useParams<OngParams>();
     const { goBack } = useHistory();
     const history = useHistory();
     
-    const ong = localStorage.getItem('ongId');
-
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
+    const ong = params.id;
 
     async function handleSubmit(event: FormEvent) {
         event.preventDefault();
@@ -30,7 +34,7 @@ function RegisterEvent() {
             
             await api.post('events', data);
             
-            history.push('/home');
+            history.push(`/home/${params.id}`);
             
         } catch(err) {
 

@@ -19,7 +19,7 @@ export default {
     },
 
     async show(request: Request, response: Response) {
-        const { id } = request.body;
+        const { id } = request.params;
 
         const ongsRepository = getRepository(Ong);
 
