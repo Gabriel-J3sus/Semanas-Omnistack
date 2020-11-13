@@ -17,7 +17,7 @@ export default class Event {
     price: number;
 
     @ManyToOne(() => Ong, ong => ong.events, {
-        cascade: true
+        cascade: ['insert', 'update']
     })
     @JoinColumn({ name: 'ong' })
     ong: Ong;

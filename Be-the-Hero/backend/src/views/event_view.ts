@@ -7,6 +7,7 @@ export default {
             name: event.name,
             description: event.description,
             price: event.price,
+            ong: event.ong,
         };
     },
 

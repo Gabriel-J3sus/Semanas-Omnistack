@@ -22,7 +22,9 @@ export default class Ong {
     @Column()
     uf: string;
 
-    @OneToMany(() => Event, event => event.ong)
+    @OneToMany(() => Event, event => event.ong, {
+        cascade: ['insert', 'update']
+    })
     @JoinColumn({ name: 'events' })
     events: Event[];
 }
