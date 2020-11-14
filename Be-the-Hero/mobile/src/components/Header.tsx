@@ -12,22 +12,22 @@ interface HeaderProps {
     showArrow?: boolean;
 }
 
-interface Ongs {
-    id: string;
+interface Events {
+    id: number;
 }
 
 export default function Header({ showArrow }: HeaderProps) {
     const navigation = useNavigation();
 
-    const [ongs, setOngs] = useState<Ongs[]>([])
+    const [events, setEvents] = useState<Events[]>([])
 
     function handleNavigateReturn() {
         navigation.navigate("Home");
     }
 
     useEffect(() => {
-        api.get('ongs').then(response => {
-            setOngs(response.data);
+        api.get('events').then(response => {
+            setEvents(response.data);
         })
     }, [])
 
@@ -44,7 +44,7 @@ export default function Header({ showArrow }: HeaderProps) {
                     />
                 </BorderlessButton>
             ) : (
-                <Text style={styles.title}> Total de<Text style={styles.titleBold}> {ongs.length} casos </Text></Text>
+                <Text style={styles.title}> Total de<Text style={styles.titleBold}> {events.length} casos </Text></Text>
             )
             }
         </View>

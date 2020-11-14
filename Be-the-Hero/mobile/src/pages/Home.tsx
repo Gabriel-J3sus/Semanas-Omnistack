@@ -7,18 +7,15 @@ import Styles from '../styles/Home';
 
 import api from '../services/api';
 
-interface Ongs {
-    id: string;
+interface Events {
+    id: number;
     name: string;
-    events: Array<{
-        id: number;
-        name: string;
-        price: number;
-    }>;
+    price: number;
+    ongName: string;
 }
 
 export default function Home() {
-    const [ongs, setOngs] = useState<Ongs[]>([]);
+    const [events, setEvents] = useState<Events[]>([]);
 
     const navigation = useNavigation();
 
@@ -27,8 +24,8 @@ export default function Home() {
     }
     
     useEffect(() => {
-        api.get('ongs').then(response => {
-            setOngs(response.data);
+        api.get('events').then(response => {
+            setEvents(response.data);
         })
     }, [])
 
@@ -38,31 +35,29 @@ export default function Home() {
 
             <Text style={Styles.title2}>Escolha um dos casos abaixo e salve o dia.</Text>
             
-            {ongs.map(ong => {
-                const ongId = ong.id;
-
+            {events.map(event => {
                 return (
-                    <View key={ong.id} style={Styles.container2}>
+                    <View key={event.id} style={Styles.container2}>
                         <View style={Styles.wrapper}>
                             <View>
                                 <Text style={Styles.title3}>Caso:</Text>
                                 <Text style={Styles.text}>
-                                    {ong.events.map(event => event.name)}
+                                    {event.name}
                                 </Text>
                             </View>
 
                             <View>
                                 <Text style={Styles.title3}>Ong:</Text>
-                                <Text style={Styles.text}>{ong.name}</Text>
+                                <Text style={Styles.text}>{event.ongName}</Text>
                             </View>
                         </View>
                         <Text style={Styles.title3}>Valor:</Text>
-                        <Text style={Styles.text}>R${ong.events.map(event => event.price)}</Text>
+                        <Text style={Styles.text}>R${event.price}</Text>
 
                         <TouchableOpacity style={Styles.linkContainer}>
                             <Text 
                                 style={Styles.link} 
-                                onPress={() => ong.events.map(event => handleNavigateToDetails(event.id))}
+                                onPress={() => handleNavigateToDetails(event.id)}
                             >
                                 Ver mais detalhes
                             </Text>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Linking } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useRoute } from'@react-navigation/native';
+import * as MailComposer from 'expo-mail-composer';
 
 import Styles from '../styles/Detail';
 
@@ -17,20 +18,19 @@ interface Event {
     name: string;
     description: string;
     price: number;
-    ong: Array<{
-        id: string;
-        name: string;
-        email: string;
-        whatsapp: string;
-    }>;
+    ongName: string;
+    ongEmail: string;
+    ongWhatsapp: string;
 }
 
 export default function Detail() {
     const route = useRoute();
-
     const params = route.params as EventDetailsRouteParams;
 
     const [event, setEvent] = useState<Event>();
+
+    const message = `Olá ${event?.ongName}, estou entrando em contato pois gostaria de ajudar no caso "${event?.name}" com o valor de ${event?.price}`;
+
     useEffect(() => {
         api.get(`events/${params.id}`).then(response => {
             setEvent(response.data);
@@ -40,6 +40,19 @@ export default function Detail() {
     if (!event) {
         return <Text>Carregando...</Text>;
     }
+
+    function sendMail(email: string) {
+        MailComposer.composeAsync({
+            subject: `Herói do caso: ${event?.name}`,
+            recipients: [email],
+            body: message,
+        })
+    }
+
+    function sendWhatsapp() {
+        Linking.openURL(`whatsapp://send?phone=${event?.ongWhatsapp}&text=${message}`);
+    }
+
 
     return(
         <View style={Styles.container}>
@@ -51,7 +64,7 @@ export default function Detail() {
                     </View>
                     <View>
                         <Text style={Styles.title}>Ong:</Text>
-                        <Text style={Styles.text}>wwww</Text>
+                        <Text style={Styles.text}>{event.ongName}</Text>
                     </View>
                 </View>
                 <Text style={Styles.title}>Descrição:</Text>
@@ -66,11 +79,11 @@ export default function Detail() {
                 <Text style={Styles.text2}> Entre em contato: </Text>
 
                 <View style={Styles.buttons}>
-                    <RectButton style={Styles.button} onPress={() => {}}> 
+                    <RectButton style={Styles.button} onPress={sendWhatsapp}> 
                         <Text style={Styles.buttonText}> WhatsApp </Text>
                     </RectButton>
 
-                    <RectButton style={Styles.button} onPress={() => {}}>
+                    <RectButton style={Styles.button} onPress={() => sendMail(event.ongEmail)}>
                         <Text style={Styles.buttonText}> E-mail </Text>
                     </RectButton>
                 </View>

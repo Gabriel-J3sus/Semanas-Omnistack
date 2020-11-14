@@ -1,4 +1,5 @@
 import Event from '../models/Event';
+import ongView from './ong_view';
 
 export default {
     render(event: Event) {
@@ -7,7 +8,10 @@ export default {
             name: event.name,
             description: event.description,
             price: event.price,
-            ong: event.ong,
+            ongId: event.ong.id,
+            ongName: event.ong.name,
+            ongEmail: event.ong.email,
+            ongWhatsapp: event.ong.whatsapp,
         };
     },
 
