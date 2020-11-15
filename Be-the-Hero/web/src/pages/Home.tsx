@@ -9,7 +9,7 @@ import api from '../services/api';
 import logoImg from '../images/Logo.svg';
 
 interface Ong {
-    id: number;
+    id: string;
     name: string;
     events: Array<{
         id: number;

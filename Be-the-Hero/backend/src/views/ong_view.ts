@@ -1,6 +1,6 @@
 import Ong from '../models/Ong';
 
-import eventsView from './event_view';
+import eventsView from './event_for_ong_view';
 
 export default {
     render(ong: Ong) {
