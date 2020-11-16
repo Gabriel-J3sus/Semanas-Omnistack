@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
-import '../styles/pages/create_Event.css';
+import { Container, Wrapper, Left, Right } from '../styles/pages/create_Event';
 import api from '../services/api';
 
 import logoImg from '../images/Logo.svg';
@@ -43,22 +43,22 @@ function RegisterEvent() {
     }
 
     return (
-        <div id="page-create">
-            <div className="content-wrapper">
-                <div className="left">
+        <Container id="page-create">
+            <Wrapper className="content-wrapper">
+                <Left className="left">
                     <img src={logoImg} alt="Be The Hero"/>
 
                     <h1>Cadastrar novo caso</h1>
 
                     <p>Descreva o caso detalhadamente para encontrar um herói para resolver isso.</p>
 
-                    <button onClick={goBack} className="return">
+                    <button onClick={goBack}>
                         <FiArrowLeft size={24} color="#E02041" />
                         <span>Voltar para a home</span>
                     </button>
-                </div>
+                </Left>
 
-                <form onSubmit={handleSubmit} className="right">
+                <Right onSubmit={handleSubmit} className="right">
                     <input 
                         type="text" 
                         placeholder="Título do caso" 
@@ -77,12 +77,12 @@ function RegisterEvent() {
                         onChange={event => setPrice(event.target.value)}
                     />
                 
-                    <div className="buttons">
-                        <button type="submit" className="register">Cadastrar</button>
+                    <div>
+                        <button type="submit">Cadastrar</button>
                     </div>
-                </form>
-            </div>
-        </div>
+                </Right>
+            </Wrapper>
+        </Container>
     );
 }
 

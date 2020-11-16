@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
 
-import '../styles/pages/login.css';
+import { Container, Wrapper, Left } from '../styles/pages/login';
 import api from '../services/api';
 
 import logoImg from '../images/Logo.svg';
@@ -27,9 +27,9 @@ function Login() {
     }
 
     return (
-        <div id="page-login">
-            <div className="content-wrapper">
-                <div className="left">
+        <Container id="page-login">
+            <Wrapper>
+                <Left>
                     <img src={logoImg} alt="Be The Hero"/>
 
                     <form onSubmit={handleSubmit}>
@@ -50,11 +50,11 @@ function Login() {
                             <span>Não tenho cadastro</span>
                         </Link>
                     </form>
-                </div>
+                </Left>
 
                 <img src={peopleImg} alt="People"/>
-            </div>
-        </div>
+            </Wrapper>
+        </Container>
     );
 }
 

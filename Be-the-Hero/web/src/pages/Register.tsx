@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
-import '../styles/pages/register.css';
+import { Container, Wrapper, Left, Right } from '../styles/pages/register';
 import api from '../services/api';
 
 import logoImg from '../images/Logo.svg';
@@ -42,22 +42,22 @@ function Register() {
     }
     
     return (
-        <div id="page-register">
-            <div className="content-wrapper">
-                <div className="left">
+        <Container id="page-register">
+            <Wrapper className="content-wrapper">
+                <Left className="left">
                     <img src={logoImg} alt="Be The Hero"/>
 
                     <h1>Cadastro</h1>
 
                     <p>Faça seu cadastro, entre na plataforma e ajude pessoas a encontrarem os casos da sua ONG.</p>
 
-                    <button onClick={goBack} className="return">
+                    <button onClick={goBack}>
                         <FiArrowLeft size={24} color="#E02041" />
                         <span>Voltar para o logon</span>
                     </button>
-                </div>
+                </Left>
                 
-                <form onSubmit={handleSubmit} className="right">
+                <Right onSubmit={handleSubmit}>
                     <input 
                         type="text"
                         placeholder="Nome da ONG" 
@@ -97,9 +97,9 @@ function Register() {
                     <button type="submit">
                         Cadastrar
                     </button>
-                </form>
-            </div>
-        </div>
+                </Right>
+            </Wrapper>
+        </Container>
     );
 }
 

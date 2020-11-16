@@ -3,7 +3,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { CgLogOff } from 'react-icons/cg';
 import { FiTrash2 } from 'react-icons/fi';
 
-import '../styles/pages/home.css';
+import { Container, Header, Left, Right } from '../styles/pages/home'
 import api from '../services/api';
 
 import logoImg from '../images/Logo.svg';
@@ -58,24 +58,24 @@ function Home() {
     }
 
     return (
-        <div id="page-home">
-            <header>
-                <div className="header-left">
+        <Container id="page-home">
+            <Header>
+                <Left>
                     <img src={logoImg} alt="Be The Hero"/>
 
                     <h2>Bem vindo(a), {ong.name}</h2>
-                </div>
+                </Left>
 
-                <div className="header-right">
+                <Right>
                     <Link to={`/create/${ong.id}`} className="new">
                         Cadastrar novo caso
                     </Link>
                     
-                    <button type="button" onClick={handleLogout}    className="logout">
+                    <button type="button" onClick={handleLogout}>
                         <CgLogOff size={24} color="#E02041" />
                     </button>
-                </div>
-            </header>
+                </Right>
+            </Header>
 
             <h1> Casos Cadastrados </h1>
 
@@ -100,7 +100,7 @@ function Home() {
                     );
                 })}
             </ul>
-        </div>
+        </Container>
     );
 }
 
