@@ -7,19 +7,6 @@ export const Container = styled.div`
     padding: 0 30px;
     margin: 32px auto;
 
-    &::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: #DCDCE6;
-        border-radius: 2px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background-color: #F0F0F5;
-    }
-
     > h1 {
         margin-top: 80px;
         margin-bottom: 24px;
@@ -27,7 +14,7 @@ export const Container = styled.div`
         font-weight: 500;
         font-size: 36px;
         line-height: 36px;
-        color: #13131A;
+        color: ${props => props.theme.colors.primaryTitle};
     }
 
     > ul {
@@ -37,7 +24,7 @@ export const Container = styled.div`
         list-style: none;
 
         > li {
-            background: #FFF;
+            background: ${props => props.theme.colors.cards};
             padding: 24px;
             border-radius: 8px;
             position: relative;
@@ -47,7 +34,7 @@ export const Container = styled.div`
                 right: 24px;
                 top: 24px;
 
-                background: #FFF;
+                background: transparent;
                 cursor:pointer; 
                 border: 0;
                 outline: 0;
@@ -58,14 +45,14 @@ export const Container = styled.div`
                 font-size: 14px;
                 line-height: 14px;
                 text-transform: uppercase;
-                color: #41414D;
+                color: ${props => props.theme.colors.secondaryTitle};
             }
 
             > p {
                 font-weight: normal;
                 font-size: 18px;
                 line-height: 24px;
-                color: #737380;
+                color: ${props => props.theme.colors.primary};
 
                 margin-top: 16px;
                 margin-bottom: 32px;
@@ -98,26 +85,31 @@ export const Left = styled.div`
         font-weight: normal;
         font-size: 20px;
         line-height: 18px;
-        color: #13131A;
+        color: ${props => props.theme.colors.primaryTitle};
     }
 `;
 
 export const Right = styled.div`
-
     display: flex;
+    justify-content: center;
     align-items: center;
+
+    > .switch {
+        transform: rotate(-90deg);
+    }
 
     > .new {
         width: 262px;
         height: 60px;
 
         margin-right: 24px;
+        margin-left: 10px;
 
         display: flex;
         justify-content: center;
         align-items: center;
 
-        background: #E02041;
+        background: ${props => props.theme.colors.redHero};
         border-radius: 8px;
 
         font-weight: bold;
@@ -130,8 +122,8 @@ export const Right = styled.div`
         transition: 0.3s ease-in-out;
 
         &:hover {
-            border: 1.5px solid #E02041;
-            color: #E02041;
+            border: 1.5px solid ${props => props.theme.colors.redHero};
+            color: ${props => props.theme.colors.redHero};
             background: transparent;
         }
     }
@@ -144,13 +136,14 @@ export const Right = styled.div`
         justify-content: center;
         align-items: center;
 
-        border: 1.5px solid #DCDCE6;
+        border: 1.5px solid ${props => props.theme.colors.cancel};
         border-radius: 8px;
+        background: transparent;
 
         transition: 0.3s ease-in-out;
 
         &:hover {
-            border: 1.5px solid #E02041;
+            border: 1.5px solid ${props => props.theme.colors.redHero};
         }
     }
 `;

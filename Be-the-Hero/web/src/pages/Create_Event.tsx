@@ -78,6 +78,7 @@ function RegisterEvent() {
                     />
                 
                     <div>
+                        <button type="reset" className="cancel">Cancelar</button>
                         <button type="submit">Cadastrar</button>
                     </div>
                 </Right>

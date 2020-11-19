@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    background: #F0F0F5;
+    background: ${props => props.theme.colors.wrapper};
     box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 `;
@@ -42,7 +42,7 @@ export const Left = styled.div`
         font-size: 36px;
         font-weight: 500;
         line-height: 36px;
-        color: #13131A;
+        color: ${props => props.theme.colors.primaryTitle};
     }
 
     > p {
@@ -63,7 +63,8 @@ export const Left = styled.div`
         font-size: 18px;
         font-weight: bold;
         line-height: 16px;
-        color: #41414D;
+        background: transparent;
+        color: ${props => props.theme.colors.secondaryTitle};
         outline: 0;
         border: 0;
 
@@ -75,7 +76,7 @@ export const Left = styled.div`
         }
 
         &:hover {
-            color: #E02041;
+            color: ${props => props.theme.colors.redHero};
         }
     }
 `;
@@ -92,18 +93,18 @@ export const Right = styled.form`
 
         padding: 19px 20px 19px 24px;
 
-        background: #FFF;
-        border: 1.5px solid #DCDCE6;
+        background: ${props => props.theme.colors.inputs};
+        border: 1.5px solid ${props => props.theme.colors.cancel};
         border-radius: 8px;
         
         font-size: 18px;
         font-weight: normal;
         line-height: 18px;
-        color: #41414D;
+        color: ${props => props.theme.colors.secondaryTitle};
 
         &::placeholder {
             line-height: 21px;
-            color: #A8A8B3;
+            color: ${props => props.theme.colors.secondary};
         }
 
         &:not(:first-child):not(:last-child) {
@@ -122,14 +123,14 @@ export const Right = styled.form`
 
             padding: 19px 20px 19px 24px;
 
-            background: #FFF;
-            border: 1.5px solid #DCDCE6;
+            background: ${props => props.theme.colors.inputs};
+            border: 1.5px solid ${props => props.theme.colors.cancel};
             border-radius: 8px;
             
             font-size: 18px;
             font-weight: normal;
             line-height: 18px;
-            color: #41414D;
+            color: ${props => props.theme.colors.secondaryTitle};
             
             &:first-child {
                 margin-right: 8px;
@@ -137,7 +138,7 @@ export const Right = styled.form`
 
             &::placeholder {
                 line-height: 21px;
-                color: #A8A8B3;
+                color: ${props => props.theme.colors.secondary};
             } 
         }
     }
@@ -150,7 +151,7 @@ export const Right = styled.form`
         justify-content: center;
         align-items: center;
 
-        background: #E02041;
+        background: ${props => props.theme.colors.redHero};
         border: 0;
         border-radius: 8px;
 
@@ -164,8 +165,8 @@ export const Right = styled.form`
 
         &:hover {
             background: transparent;
-            color: #E02041;
-            border: 2px solid #E02041;
+            color: ${props => props.theme.colors.redHero};
+            border: 2px solid ${props => props.theme.colors.redHero};
         }
     }
 `;

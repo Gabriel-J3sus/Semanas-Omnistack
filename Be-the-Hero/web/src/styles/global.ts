@@ -9,8 +9,8 @@ export default createGlobalStyle`
     }
 
     body {
-        background: #F0F0F5;
-        color: #737380;
+        background: ${props => props.theme.colors.background};
+        color: ${props => props.theme.colors.primary};
     }
 
     body, input, button, textarea {

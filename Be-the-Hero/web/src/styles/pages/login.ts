@@ -43,7 +43,7 @@ export const Left =  styled.div`
             font-size: 36px;
             font-weight: 500;
             line-height: 36px;
-            color: #13131A;
+            color: ${props => props.theme.colors.primaryTitle};
         }
 
         > input {
@@ -52,20 +52,20 @@ export const Left =  styled.div`
 
             padding: 19px 20px 19px 24px;
 
-            background: #FFF;
-            border: 1.5px solid #DCDCE6;
+            background: ${props => props.theme.colors.inputs};
+            border: 1.5px solid ${props => props.theme.colors.cancel};
             border-radius: 8px;
 
             font-size: 18px;
             font-weight: normal;
             line-height: 18px;
-            color: #41414D;
+            color: ${props => props.theme.colors.secondaryTitle};
 
             &::placeholder {
                 font-size: 18px;
                 font-weight: normal;
                 line-height: 21px;
-                color: #A8A8B3;
+                color: ${props => props.theme.colors.secondary};
             }
         }
 
@@ -80,9 +80,9 @@ export const Left =  styled.div`
             justify-content: center;
             align-items: center;
 
-            background: #E02041;
+            background: ${props => props.theme.colors.redHero};
             border-radius: 8px;
-            border: 0;
+            border: none;
 
             font-weight: bold;
             font-size: 18px;
@@ -95,8 +95,8 @@ export const Left =  styled.div`
 
             &:hover {
                 background: transparent;
-                color: #E02041;
-                border: 2px solid #E02041;
+                color: ${props => props.theme.colors.redHero};
+                border: 2px solid ${props => props.theme.colors.redHero};
             }
         }
 
@@ -107,7 +107,7 @@ export const Left =  styled.div`
             font-size: 18px;
             font-weight: bold;
             line-height: 21px;
-            color: #41414D;
+            color: ${props => props.theme.colors.secondaryTitle};
             
             text-decoration: none;
             transition: 0.3s ease-in-out;
@@ -117,7 +117,7 @@ export const Left =  styled.div`
             }
 
             &:hover {
-                color: #E02041;
+                color: ${props => props.theme.colors.redHero};
             }
         }
     }

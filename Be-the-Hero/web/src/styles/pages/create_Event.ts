@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    background: #F0F0F5;
+    background: ${props => props.theme.colors.wrapper};
     box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 `;
@@ -42,7 +42,7 @@ export const Left = styled.div`
         font-weight: 500;
         font-size: 36px;
         line-height: 36px;
-        color: #13131A;
+        color: ${props => props.theme.colors.primaryTitle};
 
         margin-bottom: 32px;
     }
@@ -51,7 +51,7 @@ export const Left = styled.div`
         font-weight: normal;
         font-size: 18px;
         line-height: 32px;
-        color: #737380;
+        color: ${props => props.theme.colors.primary};
 
         margin-bottom: 84px;
     }
@@ -63,7 +63,8 @@ export const Left = styled.div`
         font-weight: bold;
         font-size: 18px;
         line-height: 16px;
-        color: #41414D;
+        background: transparent;
+        color: ${props => props.theme.colors.secondaryTitle};
         border: 0;
         outline: 0;
 
@@ -75,7 +76,7 @@ export const Left = styled.div`
         }
 
         &:hover {
-            color: #E02041;
+            color: ${props => props.theme.colors.redHero};
         }
     }
 `;
@@ -92,18 +93,18 @@ export const Right = styled.form`
 
         padding: 19px 20px 19px 24px;
 
-        background: #FFFFFF;
-        border: 1.5px solid #DCDCE6;
+        background: ${props => props.theme.colors.inputs};
+        border: 1.5px solid ${props => props.theme.colors.cancel};
         border-radius: 8px;
 
         font-size: 18px;
         font-weight: normal;
         line-height: 18px;
-        color: #41414D;
+        color: ${props => props.theme.colors.secondaryTitle};
 
         &::placeholder {
             line-height: 21px;
-            color: #A8A8B3;
+            color: ${props => props.theme.colors.secondary};
         }   
     }
 
@@ -114,36 +115,37 @@ export const Right = styled.form`
         margin: 8px 0;
         padding: 19px 20px 19px 24px;
 
-        background: #FFFFFF;
-        border: 1.5px solid #DCDCE6;
+        background: ${props => props.theme.colors.inputs};;
+        border: 1.5px solid ${props => props.theme.colors.cancel};
         border-radius: 8px;
 
         font-size: 18px;
         font-weight: normal;
         line-height: 18px;
-        color: #41414D; 
+        color: ${props => props.theme.colors.secondaryTitle};
 
         &::placeholder {
             line-height: 21px;
-            color: #A8A8B3;
+            color: ${props => props.theme.colors.secondary};;
         }
     }
 
     > div {
         display: flex;
         align-items: center;
+        justify-content: space-between;
 
         margin-top: 16px;
 
         > button {
-            width: 100%;
+            width: 60%;
             height: 60px;
 
             display: flex;
             justify-content: center;
             align-items: center;
             
-            background: #E02041;
+            background: ${props => props.theme.colors.redHero};
             border: none;
             border-radius: 8px;
 
@@ -156,9 +158,26 @@ export const Right = styled.form`
             transition: 0.3s ease-in-out;
 
             &:hover {
-                border: 2.5px solid #E02041;
+                border: 2.5px solid ${props => props.theme.colors.redHero};
                 background: transparent;
-                color: #E02041;
+                color: ${props => props.theme.colors.redHero};
+            }
+        }
+
+        > .cancel {
+            width: 37%;
+            height: 60px;
+            
+            border: none;
+            background: transparent;
+            color: ${props => props.theme.colors.secondaryTitle};
+            cursor: pointer;
+
+            
+
+            &:hover {
+                border: none;
+                color: ${props => props.theme.colors.redHero};
             }
         }
     }

@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { CgLogOff } from 'react-icons/cg';
 import { FiTrash2 } from 'react-icons/fi';
+import Switch from 'react-switch';
+import { ThemeContext } from 'styled-components';
 
 import { Container, Header, Left, Right } from '../styles/pages/home'
 import api from '../services/api';
 
 import logoImg from '../images/Logo.svg';
+
+interface Props {
+    toggleTheme(): void;
+}
 
 interface Ong {
     id: string;
@@ -23,12 +29,14 @@ interface OngParams {
     id: string;
 }
 
-function Home() {
+function Home({ toggleTheme }:Props) {
+    const { colors, title } = useContext(ThemeContext);
     const params = useParams<OngParams>();
     const history = useHistory();
-
+    console.log(title);
+    
     const [ong, setOng] = useState<Ong>()
-
+    
     useEffect(() => {
         api.get(`ongs/${params.id}`).then(response => {
             setOng(response.data);
@@ -67,6 +75,19 @@ function Home() {
                 </Left>
 
                 <Right>
+                    <Switch 
+                        className='switch'
+                        onChange={() => toggleTheme}
+                        checked={title === 'dark'}
+                        checkedIcon={false}
+                        uncheckedIcon={false}
+                        height={15}
+                        width={40}
+                        handleDiameter={20}
+                        offColor={colors.secondaryTitle}
+                        onColor={colors.primary}
+                    />
+
                     <Link to={`/create/${ong.id}`} className="new">
                         Cadastrar novo caso
                     </Link>
