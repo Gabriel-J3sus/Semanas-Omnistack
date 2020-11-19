@@ -75,17 +75,17 @@ function Home({ toggleTheme }:Props) {
                 </Left>
 
                 <Right>
-                    <Switch 
-                        className='switch'
-                        onChange={() => toggleTheme}
+                    <Switch
+                        onChange={toggleTheme}
                         checked={title === 'dark'}
                         checkedIcon={false}
                         uncheckedIcon={false}
                         height={15}
                         width={40}
                         handleDiameter={20}
-                        offColor={colors.secondaryTitle}
+                        offColor={colors.secundaryTitle}
                         onColor={colors.primary}
+                        className='switch'
                     />
 
                     <Link to={`/create/${ong.id}`} className="new">

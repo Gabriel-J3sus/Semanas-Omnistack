@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react';
-import { ThemeProvider } from 'styled-components';
+import React from 'react';
+import { DefaultTheme, ThemeProvider } from 'styled-components';
+import usePersistedState from './utils/usePersistedState';
 
 import Routes from './routes';
 
@@ -8,11 +9,11 @@ import dark from './styles/themes/dark';
 import GlobalStyles from './styles/global';
 
 function App() {
-  const [theme, setTheme] = useState(light);
-  
+  const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
+
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
-  }
+  };
   
   return (
     <ThemeProvider theme={theme}>
@@ -23,7 +24,3 @@ function App() {
 }
 
 export default App;
-
-// () => {
-//   setTheme(theme.title === 'light' ? dark : light);
-// }; 

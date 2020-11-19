@@ -9,15 +9,15 @@ declare module 'styled-components' {
             redHero: string;
             
             primaryTitle: string;
-            secondaryTitle: string;
+            secundaryTitle: string;
     
             primary: string;
-            secondary: string;
+            secundary: string;
     
             cards: string;
             inputs: string;
             cancel: string;
             wrapper: string;
-        },
+        }
     }
 }

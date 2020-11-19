@@ -6,10 +6,10 @@ export default {
         redHero: '#E02041',
 
         primaryTitle: '#B4B4B4',
-        secondaryTitle: '#FFFFFF',
+        secundaryTitle: '#FFFFFF',
 
         primary: '#B9B9B9',
-        secondary: '#F1F1F1',
+        secundary: '#F1F1F1',
 
         cards: '#262628',
         inputs: '#989898',

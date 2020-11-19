@@ -45,7 +45,7 @@ export const Container = styled.div`
                 font-size: 14px;
                 line-height: 14px;
                 text-transform: uppercase;
-                color: ${props => props.theme.colors.secondaryTitle};
+                color: ${props => props.theme.colors.secundaryTitle};
             }
 
             > p {

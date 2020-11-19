@@ -64,7 +64,7 @@ export const Left = styled.div`
         font-size: 18px;
         line-height: 16px;
         background: transparent;
-        color: ${props => props.theme.colors.secondaryTitle};
+        color: ${props => props.theme.colors.secundaryTitle};
         border: 0;
         outline: 0;
 
@@ -100,11 +100,11 @@ export const Right = styled.form`
         font-size: 18px;
         font-weight: normal;
         line-height: 18px;
-        color: ${props => props.theme.colors.secondaryTitle};
+        color: ${props => props.theme.colors.secundaryTitle};
 
         &::placeholder {
             line-height: 21px;
-            color: ${props => props.theme.colors.secondary};
+            color: ${props => props.theme.colors.secundary};
         }   
     }
 
@@ -122,11 +122,11 @@ export const Right = styled.form`
         font-size: 18px;
         font-weight: normal;
         line-height: 18px;
-        color: ${props => props.theme.colors.secondaryTitle};
+        color: ${props => props.theme.colors.secundaryTitle};
 
         &::placeholder {
             line-height: 21px;
-            color: ${props => props.theme.colors.secondary};;
+            color: ${props => props.theme.colors.secundary};;
         }
     }
 
@@ -170,7 +170,7 @@ export const Right = styled.form`
             
             border: none;
             background: transparent;
-            color: ${props => props.theme.colors.secondaryTitle};
+            color: ${props => props.theme.colors.secundaryTitle};
             cursor: pointer;
 
             
