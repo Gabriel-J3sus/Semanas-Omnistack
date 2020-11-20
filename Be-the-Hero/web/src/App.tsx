@@ -4,8 +4,8 @@ import usePersistedState from './utils/usePersistedState';
 
 import Routes from './routes';
 
-import light from './styles/themes/light';
-import dark from './styles/themes/dark';
+import { light } from './styles/themes/light';
+import { dark } from './styles/themes/dark';
 import GlobalStyles from './styles/global';
 
 function App() {

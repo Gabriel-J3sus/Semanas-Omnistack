@@ -33,7 +33,6 @@ function Home({ toggleTheme }:Props) {
     const { colors, title } = useContext(ThemeContext);
     const params = useParams<OngParams>();
     const history = useHistory();
-    console.log(title);
     
     const [ong, setOng] = useState<Ong>()
     

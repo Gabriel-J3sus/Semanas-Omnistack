@@ -42,6 +42,12 @@ function RegisterEvent() {
         }
     }
 
+    function handleReset() {
+        setName('');
+        setDescription('');
+        setPrice('');   
+    }
+
     return (
         <Container id="page-create">
             <Wrapper className="content-wrapper">
@@ -78,7 +84,7 @@ function RegisterEvent() {
                     />
                 
                     <div>
-                        <button type="reset" className="cancel">Cancelar</button>
+                        <button type="reset" onClick={handleReset} className="cancel">Cancelar</button>
                         <button type="submit">Cadastrar</button>
                     </div>
                 </Right>

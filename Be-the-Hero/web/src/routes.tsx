@@ -14,10 +14,10 @@ function Routes({ toggleTheme }:Props) {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={Login} />
+                <Route path="/" exact render={(props) => <Login {...props} toggleTheme={toggleTheme} />} />
                 <Route path="/register" component={Register} />
 
-                <Route path="/home/:id" component={Home} toggleTheme={toggleTheme} />
+                <Route path="/home/:id" render={(props) => <Home {...props} toggleTheme={toggleTheme} />} />
                 <Route path="/create/:id" component={CreateEvent} />
             </Switch>
         </BrowserRouter>

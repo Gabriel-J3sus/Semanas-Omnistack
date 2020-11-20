@@ -120,5 +120,9 @@ export const Left =  styled.div`
                 color: ${props => props.theme.colors.redHero};
             }
         }
+
+        > .switch {
+            margin-top: 20px;
+        }
     }
 `;
