@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { Image } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import styled from 'styled-components/native';
 
 import Logo from '../images/Logo.png';
 
@@ -32,7 +33,7 @@ export default function Header({ showArrow }: HeaderProps) {
     }, [])
 
     return(
-        <View style={styles.container}>
+        <Container>
             <Image source={Logo} />
 
             { showArrow ? (
@@ -44,30 +45,27 @@ export default function Header({ showArrow }: HeaderProps) {
                     />
                 </BorderlessButton>
             ) : (
-                <Text style={styles.title}> Total de<Text style={styles.titleBold}> {events.length} casos </Text></Text>
+                <Title> Total de<TitleBold> {events.length} casos </TitleBold></Title>
             )
             }
-        </View>
+        </Container>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        paddingHorizontal: 40,
-        paddingTop: 40,
-        paddingBottom: 45,
-        backgroundColor: '#F0F0F5',
+const Container = styled.View`
+    padding: 40px 40px 45px;
 
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
+    background-color: #F0F0F5;
 
-    title: {
-        fontFamily: 'Roboto_400Regular',
-    },
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`;    
 
-    titleBold: {
-        fontFamily: 'Roboto_500Medium',
-    }
-})
+const Title = styled.Text`
+    font-family: 'Roboto_400Regular';
+`;
+
+const TitleBold = styled.Text`
+    font-family: 'Roboto_500Medium';
+`;

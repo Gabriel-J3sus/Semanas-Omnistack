@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Text, ScrollView, View, TouchableOpacity,} from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-import Styles from '../styles/Home';
+import { Container, Title, Title2, Container2, Wrapper, Title3, StyledText, LinkText } from '../styles/Home';
 
 import api from '../services/api';
+
 
 interface Events {
     id: number;
@@ -30,43 +31,57 @@ export default function Home() {
     }, [])
 
     return (
-        <ScrollView style={Styles.container}>
-            <Text style={Styles.title}>Bem Vindo!</Text>
+        <Container>
+            <Title>Bem Vindo!</Title>
 
-            <Text style={Styles.title2}>Escolha um dos casos abaixo e salve o dia.</Text>
+            <Title2>Escolha um dos casos abaixo e salve o dia.</Title2>
             
             {events.map(event => {
                 return (
-                    <View key={event.id} style={Styles.container2}>
-                        <View style={Styles.wrapper}>
+                    <Container2 key={event.id}>
+                        <Wrapper>
                             <View>
-                                <Text style={Styles.title3}>Caso:</Text>
-                                <Text style={Styles.text}>
+                                <Title3>Caso:</Title3>
+                                <StyledText>
                                     {event.name}
-                                </Text>
+                                </StyledText>
                             </View>
 
                             <View>
-                                <Text style={Styles.title3}>Ong:</Text>
-                                <Text style={Styles.text}>{event.ongName}</Text>
+                                <Title3>Ong:</Title3>
+                                <StyledText>{event.ongName}</StyledText>
                             </View>
-                        </View>
-                        <Text style={Styles.title3}>Valor:</Text>
-                        <Text style={Styles.text}>R${event.price}</Text>
+                        </Wrapper>
+                        <Title3>Valor:</Title3>
+                        <StyledText>R${event.price}</StyledText>
 
-                        <TouchableOpacity style={Styles.linkContainer}>
-                            <Text 
-                                style={Styles.link} 
-                                onPress={() => handleNavigateToDetails(event.id)}
-                            >
-                                Ver mais detalhes
-                            </Text>
+                        <TouchableOpacity style={styles.linkContainer}>
+                                <LinkText onPress={() => handleNavigateToDetails(event.id)}>
+                                    Ver mais detalhes
+                                </LinkText>
 
-                            <Feather name="arrow-right" size={16} color="#E02041"/>
+                                <Feather name="arrow-right" size={16} color="#E02041"/>
                         </TouchableOpacity>
-                    </View>
+                    </Container2>
                 );
             })}
-        </ScrollView>
+        </Container>
     );
 }
+
+export const styles = StyleSheet.create({
+    linkContainer: {
+        marginHorizontal: -25,
+        marginTop: 32,
+    
+        borderTopColor: '#F0F0F5',
+        borderTopWidth: 1,
+    
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    
+        paddingHorizontal: 25,
+        paddingTop: 18,
+    },
+})

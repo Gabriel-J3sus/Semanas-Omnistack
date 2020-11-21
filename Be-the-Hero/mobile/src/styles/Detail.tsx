@@ -1,90 +1,60 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
 
-export default StyleSheet.create({
-    container: {
-        paddingHorizontal: 24,
-    },
-    
-    wrapper: {
-        height: 288,
-        marginBottom: 16,
-        paddingHorizontal: 24,
-        paddingTop: 24,
+export const Container = styled.View`
+    padding: 0 24px;
+`;
 
-        backgroundColor: '#FFFFFF',
-        borderRadius: 8,
-    },
+export const Wrapper = styled.View`
+    height: 288px;
+    margin-bottom: 16px;
+    padding: 24px 24px 0;
 
-    wrapperContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
+    background-color: #FFFFFF;
+    border-radius: 8px;
+`;
 
-    title: {
-        fontFamily: 'Roboto_700Bold',
-        fontSize: 14,
-        lineHeight: 15,
-        color: '#41414D',
-        textTransform: 'uppercase',
-    },
+export const WrapperContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`;
 
-    text: {
-        marginTop: 10,
-        marginBottom: 24,
+export const Title = styled.Text`
+    font-family: 'Roboto_700Bold';
+    font-size: 14px;
+    line-height: 15px;
+    color: #41414D;
+    text-transform: uppercase;
+`;
 
-        fontFamily: 'Roboto_400Regular',
-        fontSize: 15,
-        lineHeight: 25,
-        color: '#737380',
-    },
+export const Text1 = styled.Text`
+    margin: 10px 0 24px;
 
-    secondWrapper: {
-        height: 210,
-        padding: 24,
+    font-family: 'Roboto_400Regular';
+    font-size: 15px;
+    line-height: 25px;
+    color: #737380;
+`;
+
+export const SecondWrapper = styled.View`
+    height: 210px;
+    padding: 24px;
         
-        borderRadius: 8,
-        backgroundColor: '#FFFFFF',
+    border-radius: 8px;
+    background-color: #FFFFFF;
+`;
 
-    },
+export const Title2 = styled.Text`
+    font-family: 'Roboto_500Medium';
+    font-size: 20px;
+    line-height: 30px;
+    color: #13131A;
+`;
 
-    title2: {
-        fontFamily: 'Roboto_500Medium',
-        fontSize: 20,
-        lineHeight: 30,
-        color: '#13131A',
-    },
+export const Text2 = styled.Text`
+    margin: 16px 0;
 
-    text2: {
-        marginVertical: 16,
-
-        fontFamily: 'Roboto_400Regular',
-        fontSize: 15,
-        lineHeight: 20,
-        color: '#737380',
-    },
-
-    buttons: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-
-    button: {
-        width: 125,
-        height: 50,
-        
-        justifyContent: 'center',
-        alignItems: 'center',
-
-        backgroundColor: '#E02041',
-        borderRadius: 8,
-    },
-
-    buttonText: {
-        fontFamily: 'Roboto_500Medium',
-        fontSize: 15,
-        lineHeight: 18,
-        textAlign: 'center',
-        color: '#F0F0F5',
-    }
-})
+    font-family: 'Roboto_400Regular';
+    font-size: 15px;
+    line-height: 20px;
+    color: #737380;
+`;

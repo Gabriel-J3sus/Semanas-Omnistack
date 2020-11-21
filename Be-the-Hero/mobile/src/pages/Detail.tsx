@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Linking } from 'react-native';
+import { View, Linking, StyleSheet, Text } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useRoute } from'@react-navigation/native';
 import * as MailComposer from 'expo-mail-composer';
 
-import Styles from '../styles/Detail';
+import { Container, Wrapper, WrapperContainer, Title, Text1, SecondWrapper, Title2, Text2} from '../styles/Detail';
 
 import api from '../services/api';
 
@@ -55,39 +55,67 @@ export default function Detail() {
 
 
     return(
-        <View style={Styles.container}>
-            <View style={Styles.wrapper}>
-                <View style={Styles.wrapperContainer}>
+        <Container>
+            <Wrapper>
+                <WrapperContainer>
                     <View>
-                        <Text style={Styles.title}>Caso:</Text>
-                        <Text style={Styles.text}>{event.name}</Text>
+                        <Title>Caso:</Title>
+                        <Text1>{event.name}</Text1>
                     </View>
                     <View>
-                        <Text style={Styles.title}>Ong:</Text>
-                        <Text style={Styles.text}>{event.ongName}</Text>
+                        <Title>Ong:</Title>
+                        <Text1>{event.ongName}</Text1>
                     </View>
-                </View>
-                <Text style={Styles.title}>Descrição:</Text>
-                <Text style={Styles.text}>{event.description}</Text>
+                </WrapperContainer>
 
-                <Text style={Styles.title}>Valor:</Text>
-                <Text style={Styles.text}>R$ {event.price} reais</Text>
-            </View>
+                <Title>Descrição:</Title>
+                <Text1>{event.description}</Text1>
 
-            <View style={Styles.secondWrapper}>
-                <Text style={Styles.title2}> Salve o dia!</Text><Text style={Styles.title2}> Seja o herói desse caso. </Text>
-                <Text style={Styles.text2}> Entre em contato: </Text>
+                <Title>Valor:</Title>
+                <Text1>R$ {event.price} reais</Text1>
+            </Wrapper>
 
-                <View style={Styles.buttons}>
-                    <RectButton style={Styles.button} onPress={sendWhatsapp}> 
-                        <Text style={Styles.buttonText}> WhatsApp </Text>
+            <SecondWrapper>
+                <Title2> Salve o dia!</Title2><Title2> Seja o herói desse caso. </Title2>
+                <Text2> Entre em contato: </Text2>
+
+                <View style={styles.buttons}>
+                    <RectButton style={styles.button} onPress={sendWhatsapp}> 
+                        <Text style={styles.buttonText}> WhatsApp </Text>
                     </RectButton>
 
-                    <RectButton style={Styles.button} onPress={() => sendMail(event.ongEmail)}>
-                        <Text style={Styles.buttonText}> E-mail </Text>
+                    <RectButton style={styles.button} onPress={() => sendMail(event.ongEmail)}>
+                        <Text style={styles.buttonText}> E-mail </Text>
                     </RectButton>
                 </View>
-            </View>
-        </View>
+            </SecondWrapper>
+        </Container>
     );
 }
+
+const styles = StyleSheet.create({
+    buttons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+
+    button: {
+        width: 125,
+        height: 50,
+        
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        backgroundColor: '#E02041',
+        borderRadius: 8,
+    },
+
+    buttonText: {
+        fontFamily: 'Roboto_500Medium',
+        fontSize: 15,
+        lineHeight: 18,
+        textAlign: 'center',
+        color: '#F0F0F5',
+    }
+});
