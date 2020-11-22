@@ -16,12 +16,12 @@ import Detail from './pages/Detail';
 
 
 export default function Routes() {
-    const [theme, setTheme] = useState(light)
-
+    const [theme, setTheme] = useState(light);
+    
     const toggleTheme = useCallback(
         () => {
             setTheme(theme.title === 'light' ? dark : light);
-        }, [theme.title]
+        }, [setTheme, theme.title]
     )
 
     return(
