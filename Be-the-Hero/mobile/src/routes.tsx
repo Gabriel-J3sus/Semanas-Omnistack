@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { ThemeProvider } from 'styled-components';
+import { NavigationContainer,  } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const { Navigator, Screen } = createStackNavigator();
 
+import { light } from './styles/themes/light';
+import { dark } from './styles/themes/dark';
 
 import Home from './pages/Home';
 
@@ -13,26 +16,36 @@ import Detail from './pages/Detail';
 
 
 export default function Routes() {
-    return(
-        <NavigationContainer>
-            <Navigator screenOptions={{ cardStyle: { backgroundColor: '#F0F0F5' } }}>
-                <Screen 
-                    name="Home" 
-                    component={Home}
-                    options={{
-                        header: () => <Header showArrow={false}/>
-                    }}    
-                />
+    const [theme, setTheme] = useState(light)
 
-                <Screen 
-                    name="Detail" 
-                    component={Detail}
-                    options={{
-                        headerShown: true,
-                        header: () => <Header showArrow={true}/>
-                    }}    
-                />
-            </Navigator>
-        </NavigationContainer>
+    const toggleTheme = useCallback(
+        () => {
+            setTheme(theme.title === 'light' ? dark : light);
+        }, [theme.title]
+    )
+
+    return(
+        <ThemeProvider theme={theme}>
+            <NavigationContainer>
+                <Navigator screenOptions={{ cardStyle: { backgroundColor: '#F0F0F5' } }}>
+                    <Screen 
+                        name="Home" 
+                        children={() => <Home toggleTheme={toggleTheme}/>}
+                        options={{
+                            header: () => <Header showArrow={false}/>                            
+                        }}    
+                    />
+
+                    <Screen 
+                        name="Detail" 
+                        component={Detail}
+                        options={{
+                            headerShown: true,
+                            header: () => <Header showArrow={true}/>
+                        }}    
+                    />
+                </Navigator>
+            </NavigationContainer>
+        </ThemeProvider>
     );
 }

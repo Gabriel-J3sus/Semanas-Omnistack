@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Switch } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { ThemeContext } from 'styled-components';
 
 import { Container, Title, Title2, Container2, Wrapper, Title3, StyledText, LinkText } from '../styles/Home';
 
 import api from '../services/api';
 
-
+interface Props {
+    toggleTheme(): void;
+}
 
 interface Events {
     id: number;
@@ -16,8 +19,9 @@ interface Events {
     ongName: string;
 }
 
-export default function Home() {
-    const [isEnabled, setIsEnabled] = useState(true);
+export default function Home({ toggleTheme }: Props) {
+    const { title } = useContext(ThemeContext);
+    
     const [events, setEvents] = useState<Events[]>([]);
 
     const navigation = useNavigation();
@@ -34,14 +38,13 @@ export default function Home() {
 
     return (
         <Container>
-
             <View style={styles.switchContainer}>
                 <Title>Bem Vindo!</Title>
                 <Switch 
                     trackColor={{ false: '#737380', true: "#FFFFFF" }}
-                    thumbColor={isEnabled ? "#5c5c61" : "#B9B9B9"}
-                    onValueChange={() => {}}
-                    value={isEnabled}
+                    thumbColor={title === 'dark' ? "#5c5c61" : "#B9B9B9"}
+                    onValueChange={toggleTheme}
+                    value={title === 'dark'}
                 />
             </View>
 

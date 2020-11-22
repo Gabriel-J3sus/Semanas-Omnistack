@@ -1,7 +1,4 @@
-import React, { useCallback, useState } from 'react';
-import { ThemeProvider } from 'styled-components';
-import { light } from './src/styles/themes/light';
-import { dark } from './src/styles/themes/dark';
+import React from 'react';
 
 import { useFonts } from 'expo-font';
 import { Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from '@expo-google-fonts/roboto';
@@ -19,10 +16,7 @@ export default function App() {
     return null;
   }
 
-
   return (
-    <ThemeProvider theme={light}>
       <Routes />
-    </ThemeProvider>
   );
 }
