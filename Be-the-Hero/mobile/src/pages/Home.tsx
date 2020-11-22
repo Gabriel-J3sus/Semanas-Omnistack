@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Switch } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import { Container, Title, Title2, Container2, Wrapper, Title3, StyledText, LinkText } from '../styles/Home';
 
 import api from '../services/api';
+
 
 
 interface Events {
@@ -16,6 +17,7 @@ interface Events {
 }
 
 export default function Home() {
+    const [isEnabled, setIsEnabled] = useState(true);
     const [events, setEvents] = useState<Events[]>([]);
 
     const navigation = useNavigation();
@@ -32,7 +34,16 @@ export default function Home() {
 
     return (
         <Container>
-            <Title>Bem Vindo!</Title>
+
+            <View style={styles.switchContainer}>
+                <Title>Bem Vindo!</Title>
+                <Switch 
+                    trackColor={{ false: '#737380', true: "#FFFFFF" }}
+                    thumbColor={isEnabled ? "#5c5c61" : "#B9B9B9"}
+                    onValueChange={() => {}}
+                    value={isEnabled}
+                />
+            </View>
 
             <Title2>Escolha um dos casos abaixo e salve o dia.</Title2>
             
@@ -74,7 +85,7 @@ export const styles = StyleSheet.create({
         marginHorizontal: -25,
         marginTop: 32,
     
-        borderTopColor: '#F0F0F5',
+        borderTopColor: '#d8d8db',
         borderTopWidth: 1,
     
         flexDirection: 'row',
@@ -83,5 +94,10 @@ export const styles = StyleSheet.create({
     
         paddingHorizontal: 25,
         paddingTop: 18,
+    },
+
+    switchContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
 })

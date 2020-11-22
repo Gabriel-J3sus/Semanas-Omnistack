@@ -55,7 +55,7 @@ export default function Header({ showArrow }: HeaderProps) {
 const Container = styled.View`
     padding: 40px 40px 45px;
 
-    background-color: #F0F0F5;
+    background-color: ${props => props.theme.colors.background};
 
     flex-direction: row;
     justify-content: space-between;
@@ -64,8 +64,10 @@ const Container = styled.View`
 
 const Title = styled.Text`
     font-family: 'Roboto_400Regular';
+    color: ${props => props.theme.colors.primary};
 `;
 
 const TitleBold = styled.Text`
     font-family: 'Roboto_500Medium';
+    color: ${props => props.theme.colors.primary};
 `;
